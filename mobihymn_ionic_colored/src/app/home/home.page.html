@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar [color]="appColor">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Home
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list lines="none">
+        <ion-list-header [color]="darkTheme ? 'dark' : 'default'">
+            <ion-label [color]="darkTheme ? 'light' : 'default'">Resources</ion-label>
+        </ion-list-header>
+        <ion-item href="https://ionicframework.com/docs/" [color]="darkTheme ? 'dark' : 'default'">
+            <ion-icon slot="start" color="medium" name="book"></ion-icon>
+            <ion-label [color]="darkTheme ? 'light' : 'default'">Ionic Documentation</ion-label>
+        </ion-item>
+        <ion-item href="https://ionicframework.com/docs/building/scaffolding" [color]="darkTheme ? 'dark' : 'default'">
+            <ion-icon slot="start" color="medium" name="build"></ion-icon>
+            <ion-label [color]="darkTheme ? 'light' : 'default'">Scaffold Out Your App</ion-label>
+        </ion-item>
+        <ion-item href="https://ionicframework.com/docs/layout/structure" [color]="darkTheme ? 'dark' : 'default'">
+            <ion-icon slot="start" color="medium" name="grid"></ion-icon>
+            <ion-label [color]="darkTheme ? 'light' : 'default'">Change Your App Layout</ion-label>
+        </ion-item>
+        <ion-item href="https://ionicframework.com/docs/theming/basics" [color]="darkTheme ? 'dark' : 'default'">
+            <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
+            <ion-label [color]="darkTheme ? 'light' : 'default'">Theme Your App</ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

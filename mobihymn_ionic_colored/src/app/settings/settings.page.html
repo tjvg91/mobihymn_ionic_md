@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar [color]="appColor">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Settings
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list lines="none">
+        <ion-list-header [color]="darkTheme ? 'dark' : 'default'">
+            <ion-label [color]="darkTheme ? 'light' : 'default'">Appearance</ion-label>
+        </ion-list-header>
+        <ion-item [color]="darkTheme ? 'dark' : 'default'">
+            <ion-label [color]="darkTheme ? 'light' : 'default'">App Color</ion-label>
+            <ion-select slot="end" [value]="appColor" (ionChange)="onColorChange($event)" interface="popover">
+                <ion-select-option *ngFor="let color of colorList" [value]="color.value" class="test">
+                    {{ color.text }}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item [color]="darkTheme ? 'dark' : 'default'">
+            <ion-label [color]="darkTheme ? 'light' : 'default'">Dark Theme</ion-label>
+            <ion-toggle [(ngModel)]="darkTheme" [color]="appColor" (ionChange)="onThemeChange($event)"></ion-toggle>
+        </ion-item>
+    </ion-list>
+</ion-content>
