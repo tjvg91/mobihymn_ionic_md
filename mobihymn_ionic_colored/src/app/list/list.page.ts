@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Hymn } from '@store/models/hymn';
+
+import MIDIButtons from '@assets/midi-buttons.json';
 
 @Component({
   selector: 'app-list',
@@ -6,34 +9,70 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
+  @Input() appColor: string;
+  @Input() darkTheme: boolean;
+  @Input() list: Hymn[];
+
+  buttons = MIDIButtons;
+  inputReset = true;
+  midiVal = '1';
+
   constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
   }
 
-  ngOnInit() {
+  async buttonClick(btnVal: string | number) {
+    /* if (!(/[fst]$/.test(this.midiVal) && /f|s|t/.test(btnVal + ''))) {
+      if (this.inputReset) {
+        if (/\d/.test(btnVal + '')) {
+          if (btnVal !== 0) {
+            this.midiVal = btnVal + '';
+            this.inputReset = false;
+          }
+        }
+      } else {
+        if (/[0-9fst]/.test(btnVal + '')) {
+          this.midiVal += btnVal + '';
+        } else {
+          switch (btnVal) {
+            case '<':
+              if (this.midiVal.length === 1) {
+                this.inputReset = true;
+                this.midiVal = '1';
+              } else {
+                this.midiVal = this.midiVal.substr(0, this.midiVal.length - 1);
+              }
+              break;
+            case '>':
+              const found = this.midiList.find(midi => midi.number === this.midiVal);
+              if (found) {
+                this.setActiveHymn.emit(parseInt(this.midiVal));
+                this.routeToHome.emit();
+              } else {
+                const toast = await this.toastCtrl.create({
+                  duration: 3000,
+                  message: 'MIDI not found.'
+                });
+                toast.present();
+              }
+              this.inputReset = true;
+              break;
+            default:
+              break;
+          }
+        }
+      }
+    } */
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      const routerOutlet = document.querySelector('ion-router-outlet');
+      const thisContent = routerOutlet.querySelector('app-list ion-content');
+      thisContent.shadowRoot
+        .querySelector('main')
+        .setAttribute('style', 'display:flex; justify-content: center; align-items: center; flex-direction: column');
+
+    }, 100);
+  }
 }

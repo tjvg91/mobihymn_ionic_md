@@ -1,0 +1,6 @@
+<div class="color-picker-overlay" *ngIf="show" (click)="toggleShow()"></div>
+<div class="color-container" *ngIf="show">
+    <div [class]="'color-item ion-color-' + item.value" *ngFor="let item of colorList" (click)="onColorPicked(item.value)">
+        <ion-icon name="checkmark" *ngIf="item.value === color"></ion-icon>
+    </div>
+</div>

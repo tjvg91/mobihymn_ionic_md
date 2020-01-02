@@ -1,4 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-settings',
@@ -8,37 +9,23 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 export class SettingsPage {
   @Input() darkTheme: boolean;
 
-  @Input() appColor: string;
+  @Input()
+  set appColor(value: string) {
+    this.activeColorVal = value;
+    this.activeColor = this.colorList.find(c => c.value === value).text;
+  }
+  get appColor(): string {
+    return this.activeColorVal;
+  }
 
   @Output() appColorChange = new EventEmitter<string>();
 
   @Output() darkThemeChange = new EventEmitter<string>();
 
-  colorList = [{
-    text: 'Blue',
-    value: 'primary'
-  }, {
-    text: 'Purple',
-    value: 'secondary'
-  }, {
-    text: 'Pink',
-    value: 'tertiary'
-  }, {
-    text: 'Green',
-    value: 'success'
-  }, {
-    text: 'Yellow',
-    value: 'warning'
-  }, {
-    text: 'Red',
-    value: 'danger'
-  }, {
-    text: 'Orange',
-    value: 'orange'
-  }, {
-    text: 'Brown',
-    value: 'brown'
-  }];
+  activeColor: string;
+  activeColorVal: string;
+  showPicker = false;
+  colorList = environment.colorList;
 
   constructor() { }
 
@@ -46,7 +33,15 @@ export class SettingsPage {
     this.darkThemeChange.emit(e.detail.checked);
   }
 
-  onColorChange(e: CustomEvent) {
-    this.appColorChange.emit(e.detail.value);
+  onColorChange(c) {
+    this.appColorChange.emit(c);
+  }
+
+  togglePicker(val: boolean) {
+    if (val === null || val === undefined) {
+      this.showPicker = !this.showPicker;
+    } else {
+      this.showPicker = val;
+    }
   }
 }

@@ -16,15 +16,12 @@
         </ion-list-header>
         <ion-item [color]="darkTheme ? 'dark' : 'default'">
             <ion-label [color]="darkTheme ? 'light' : 'default'">App Color</ion-label>
-            <ion-select slot="end" [value]="appColor" (ionChange)="onColorChange($event)" interface="popover">
-                <ion-select-option *ngFor="let color of colorList" [value]="color.value" class="test">
-                    {{ color.text }}
-                </ion-select-option>
-            </ion-select>
+            <ion-fab-button slot="end" [color]="activeColorVal" size="small" (click)="togglePicker()"></ion-fab-button>
         </ion-item>
         <ion-item [color]="darkTheme ? 'dark' : 'default'">
             <ion-label [color]="darkTheme ? 'light' : 'default'">Dark Theme</ion-label>
             <ion-toggle [(ngModel)]="darkTheme" [color]="appColor" (ionChange)="onThemeChange($event)"></ion-toggle>
         </ion-item>
     </ion-list>
+    <app-color-picker [show]="showPicker" [color]="activeColorVal" (colorChange)="onColorChange($event)" (showChange)="togglePicker($event)"></app-color-picker>
 </ion-content>

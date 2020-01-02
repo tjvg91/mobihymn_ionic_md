@@ -3,7 +3,32 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  colorList: [{
+    text: 'Red',
+    value: 'danger'
+  }, {
+    text: 'Pink',
+    value: 'tertiary'
+  }, {
+    text: 'Purple',
+    value: 'secondary'
+  }, {
+    text: 'Blue',
+    value: 'primary'
+  }, {
+    text: 'Green',
+    value: 'success'
+  }, {
+    text: 'Yellow',
+    value: 'warning'
+  }, {
+    text: 'Orange',
+    value: 'orange'
+  }, {
+    text: 'Brown',
+    value: 'brown'
+  }]
 };
 
 /*

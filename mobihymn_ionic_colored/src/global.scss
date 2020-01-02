@@ -68,6 +68,9 @@ body {
         ion-list {
             background: var(--ion-color-dark);
         }
+        app-color-picker .color-container {
+            background: var(--ion-color-dark);
+        }
     }
     ion-content {
         height: 100vh;
